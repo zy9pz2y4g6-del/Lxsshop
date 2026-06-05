@@ -1,12 +1,12 @@
 const products = [
-  { id: 1, title: 'Sudadera Downtown', desc: 'Comodidad urbana con cuello alto y corte relajado.', price: 45, img: 'assets/images/producto-1.svg' },
-  { id: 2, title: 'Camiseta Street', desc: 'Algodón suave con estampado minimalista de temporada.', price: 25, img: 'assets/images/producto-2.svg' },
-  { id: 3, title: 'Gorra Metro', desc: 'Accesorio urbano con diseño estructurado y ventilación moderna.', price: 18, img: 'assets/images/producto-3.svg' },
-  { id: 4, title: 'Buzo Oversize Chicago', desc: 'Buzo oversize con estampado Chicago en la espalda. Disponible en varios colores.', price: 55, images: [
-      'assets/images/buzo-1.svg',
-      'assets/images/buzo-2.svg',
-      'assets/images/buzo-3.svg',
-      'assets/images/buzo-4.svg'
+  { id: 1, title: 'Sudadera Downtown', desc: 'Comodidad urbana con cuello alto y corte relajado.', price: 45, img: 'assets/images/producto-1.svg', images: ['assets/images/producto-1.svg'] },
+  { id: 2, title: 'Camiseta Street', desc: 'Algodón suave con estampado minimalista de temporada.', price: 25, img: 'assets/images/producto-2.svg', images: ['assets/images/producto-2.svg'] },
+  { id: 3, title: 'Gorra Metro', desc: 'Accesorio urbano con diseño estructurado y ventilación moderna.', price: 18, img: 'assets/images/producto-3.svg', images: ['assets/images/producto-3.svg'] },
+  { id: 4, title: 'Buzo Oversize Chicago', desc: 'Buzo oversize con estampado Chicago en la espalda. Disponible en varios colores.', price: 55, img: 'assets/images/BuzoChicago2.webp', images: [
+      'assets/images/BuzoChicago2.webp',
+      'assets/images/BuzoChicago3.webp',
+      'assets/images/BuzoChicagoModelo.png',
+      'assets/images/BuzoChicago5.webp'
     ]
   }
 ];
@@ -83,8 +83,9 @@ function renderProducts() {
     const article = document.createElement('article');
     article.className = 'product-card';
     article.dataset.productId = p.id;
+    const imgSrc = p.img || (p.images && p.images[0]) || 'assets/images/image-missing.svg';
     article.innerHTML = `
-      <img src="${p.img}" alt="${p.title}" class="product-clickable">
+      <img src="${imgSrc}" alt="${p.title}" class="product-clickable">
       <div class="product-card-body">
         <h3 class="product-clickable">${p.title}</h3>
         <p>${p.desc}</p>
