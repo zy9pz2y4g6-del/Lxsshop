@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lxsshop | Tienda de Ropa</title>
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#">Lxsshop</a>
+      <nav class="main-nav" aria-label="Menú principal">
+        <a href="#coleccion">Colección</a>
+        <a href="#destacados">Destacados</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <button class="cart-button" id="cartButton" aria-label="Ver carrito">
+        Carrito <span id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Nueva temporada</p>
+          <h1>Tu estilo habla por vos</h1>
+          <p>Descubre prendas versátiles para tu día a día, con looks funcionales y modernos.</p>
+          <a class="btn btn-primary" href="#coleccion">Ver colección</a>
+        </div>
+        <div class="hero-image">
+          <img src="assets/images/hero-logo.svg" alt="Lxsshop - Tu estilo habla por vos">
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal de producto (oculto por defecto) -->
+    <div id="productModal" class="product-modal" aria-hidden="true">
+      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" aria-label="Cerrar">×</button>
+        <div class="modal-body">
+          <img class="modal-img" src="" alt="">
+          <div class="modal-info">
+            <h3 id="modalTitle" class="modal-title"></h3>
+            <p class="modal-desc"></p>
+            <div class="modal-meta">
+              <span class="modal-price"></span>
+              <button class="btn btn-primary modal-add" data-product-id="">Agregar al carrito</button>
+            </div>
+            <div class="modal-thumbs" aria-label="Galería de imágenes"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="coleccion" class="section productos">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Productos</p>
+          <h2>Prendas que necesitas.</h2>
+          <p>Buzos, Remeras, Pantalones y accesorios diseñados para tu estilo.</p>
+        </div>
+        <div id="productGrid" class="product-grid">
+          <!-- Productos se generan dinámicamente desde `scripts/main.js` -->
+        </div>
+      </div>
+    </section>
+
+    <section id="destacados" class="section highlights">
+      <div class="container highlights-inner">
+        <div>
+          <h2>Look completo para la calle</h2>
+          <p>Combina piezas clave, colores neutros y texturas suaves para un outfit con presencia.</p>
+        </div>
+        <div class="highlight-cards">
+          <div class="highlight-card">
+            <h3>Material premium</h3>
+            <p>Tejidos cómodos y resistentes para todas las estaciones.</p>
+          </div>
+          <div class="highlight-card">
+            <h3>Entrega rápida</h3>
+            <p>Envío a todo el país con seguimiento en tiempo real.</p>
+          </div>
+          <div class="highlight-card">
+            <h3>Devoluciones fáciles</h3>
+            <p>Sin complicaciones si necesitas cambiar tu talla o estilo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contacto">
+    <div class="container footer-inner">
+      <p>Lxsshop © 2026</p>
+      <p>¿Preguntas? Escríbenos a </p>
+      <p>Teléfono: +54 9 2255608013 | Dirección: Buenos aires, San manuel, Argentina</p>
+      <p>Horario de atención: lunes a viernes, 08:00 - 20:00</p>
+    </div>
+  </footer>
+
+  <script src="scripts/main.js"></script>
+</body>
+</html>

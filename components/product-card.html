@@ -1,0 +1,12 @@
+<!-- Componente reusable de tarjeta de producto para usar dentro de plantillas o frameworks -->
+<article class="product-card" data-product-id="{{id}}">
+  <img src="assets/images/{{image}}" alt="{{title}}">
+  <div class="product-card-body">
+    <h3>{{title}}</h3>
+    <p>{{description}}</p>
+    <div class="product-meta">
+      <span class="price">{{price}}</span>
+      <button class="btn btn-secondary add-to-cart" data-product-id="{{id}}">Agregar al carrito</button>
+    </div>
+  </div>
+</article>
