@@ -1,12 +1,16 @@
 :root {
   --bg: #000000;
-  --surface: #111111;
-  --text: #f5f5f5;
+  --text: #d1d5db;
   --muted: #9ca3af;
   --primary: #dc2626;
   --accent: #dc2626;
-  --border: #222222;
-  --shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
+  --border: #e2e8f0;
+  --shadow: 0 18px 60px rgba(15, 23, 42, 0.12);
+  --surface: #1f2937;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff;
 }
 
 * {
