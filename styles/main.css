@@ -366,3 +366,26 @@ button {
     align-items: stretch;
   }
 }
+/* =========================================
+   ESTILOS PARA EL MAPA DE UBICACIÓN
+   ========================================= */
+
+#map {
+  width: 100%;
+  height: 450px; /* Puedes ajustar la altura a tu gusto */
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  z-index: 1; /* Para asegurar que no tape al menú header ni a tu modal */
+}
+
+/* Ocultar el cuadro blanco con indicaciones paso a paso 
+   para que no tape el diseño de la página en dispositivos móviles */
+.leaflet-routing-container {
+  display: none !important;
+}
+
+/* Fix para Leaflet: asegurarse de que las imágenes del mapa no se deformen */
+.leaflet-container img {
+  max-width: none !important;
+}

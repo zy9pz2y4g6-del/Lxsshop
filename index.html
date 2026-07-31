@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lxsshop | Tienda de Ropa</title>
   <link rel="stylesheet" href="styles/main.css">
+  
+  <!-- CSS de Leaflet (Mapa) y Leaflet Routing Machine (Rutas) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
 </head>
 <body>
   <header class="site-header">
@@ -13,6 +17,7 @@
       <nav class="main-nav" aria-label="Menú principal">
         <a href="#coleccion">Colección</a>
         <a href="#destacados">Destacados</a>
+        <a href="#ubicacion">Ubicación</a>
         <a href="#contacto">Contacto</a>
       </nav>
       <button class="cart-button" id="cartButton" aria-label="Ver carrito">
@@ -36,7 +41,7 @@
       </div>
     </section>
 
-    <!-- Modal de producto (oculto por defecto) -->
+    <!-- Modal de producto -->
     <div id="productModal" class="product-modal" aria-hidden="true">
       <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <button class="modal-close" aria-label="Cerrar">×</button>
@@ -63,7 +68,7 @@
           <p>Buzos, Remeras, Pantalones y accesorios diseñados para tu estilo.</p>
         </div>
         <div id="productGrid" class="product-grid">
-          <!-- Productos se generan dinámicamente desde `scripts/main.js` -->
+          <!-- Productos se generan dinámicamente -->
         </div>
       </div>
     </section>
@@ -90,16 +95,85 @@
         </div>
       </div>
     </section>
+
+    <!-- Nueva sección del Mapa -->
+    <section id="ubicacion" class="section">
+      <div class="container">
+        <div class="section-header" style="text-align: center; margin-bottom: 20px;">
+          <p class="eyebrow">Encuéntranos</p>
+          <h2>Visita nuestra tienda</h2>
+          <p>Las Heras 150, Tandil, Buenos Aires, Argentina. Autoriza tu ubicación para ver cómo llegar.</p>
+        </div>
+        <div id="map"></div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer" id="contacto">
     <div class="container footer-inner">
       <p>Lxsshop © 2026</p>
       <p>¿Preguntas? Escríbenos a </p>
-      <p>Teléfono: <a href="https://wa.me/5492255608013" target="_blank" rel="noreferrer">WhatsApp</a> | Dirección: Buenos aires, San manuel, Argentina</p>
+      <p>Teléfono: <a href="https://wa.me/5492255608013" target="_blank" rel="noreferrer">WhatsApp</a> | Dirección: Las Heras 150, Tandil, Buenos Aires, Argentina</p>
       <p>Horario de atención: lunes a viernes, 08:00 - 20:00</p>
     </div>
   </footer>
+
+  <!-- Scripts del mapa -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+  
+  <!-- Lógica JavaScript del mapa en el HTML -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Coordenadas aproximadas de Las Heras 150, Tandil
+      const storeLat = -37.3275; 
+      const storeLng = -59.1360;
+
+      // Inicializar el mapa centrado en la tienda
+      const map = L.map('map').setView([storeLat, storeLng], 14);
+
+      // Cargar la capa del mapa (OpenStreetMap es gratis)
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+
+      // Agregar marcador de la tienda
+      const storeMarker = L.marker([storeLat, storeLng]).addTo(map)
+        .bindPopup('<b>Lxsshop</b><br>Las Heras 150, Tandil.')
+        .openPopup();
+
+      // Pedir ubicación al usuario para trazar la ruta
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          function (position) {
+            const userLat = position.coords.latitude;
+            const userLng = position.coords.longitude;
+
+            // Marcador de la ubicación del usuario
+            L.marker([userLat, userLng]).addTo(map)
+              .bindPopup('Tu ubicación')
+              .openPopup();
+
+            // Trazar la ruta
+            L.Routing.control({
+              waypoints: [
+                L.latLng(userLat, userLng), // Origen (usuario)
+                L.latLng(storeLat, storeLng) // Destino (tienda)
+              ],
+              routeWhileDragging: false,
+              language: 'es',
+              addWaypoints: false,
+              fitSelectedRoutes: true,
+              show: false // Oculta el panel lateral con las instrucciones de texto
+            }).addTo(map);
+          },
+          function (error) {
+            console.log("El usuario denegó la geolocalización o hubo un error.");
+          }
+        );
+      }
+    });
+  </script>
 
   <script src="scripts/main.js"></script>
 </body>
